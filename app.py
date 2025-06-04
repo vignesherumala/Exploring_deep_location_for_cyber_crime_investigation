@@ -93,22 +93,22 @@ def predict():
 
         # Predict using the model
         my_prediction = rfc.predict(X)
+        label = my_prediction[0]
 
-        # Decode prediction
-        if my_prediction[0][0] == 1:
-            result = 'Predicted crime: Act 379 - Robbery'
-        elif my_prediction[0][1] == 1:
+        if label == 0:
+                result = 'Predicted crime: Act 379 - Robbery'
+        elif label == 1:
             result = 'Predicted crime: Act 13 - Gambling'
-        elif my_prediction[0][2] == 1:
+        elif label == 2:
             result = 'Predicted crime: Act 279 - Accident'
-        elif my_prediction[0][3] == 1:
+        elif label == 3:
             result = 'Predicted crime: Act 323 - Violence'
-        elif my_prediction[0][4] == 1:
+        elif label == 4:
             result = 'Predicted crime: Act 302 - Murder'
-        elif my_prediction[0][5] == 1:
+        elif label == 5:
             result = 'Predicted crime: Act 363 - Kidnapping'
         else:
-            result = 'Place is safe — no crime expected at that timestamp.'
+                result = 'Place is safe — no crime expected at that timestamp.'
 
         return render_template('result.html', prediction=result)
 
